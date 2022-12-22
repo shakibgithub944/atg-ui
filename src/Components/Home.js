@@ -4,12 +4,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const [users, setUsers] = useState([]);
     const [empty, setEmpty] = useState(true)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         setLoading(true)
@@ -17,6 +18,8 @@ const Home = () => {
             .then(data => {
                 setUsers(data.data)
                 setLoading(false)
+                navigate('/')
+
             })
     }, [])
 
@@ -32,7 +35,7 @@ const Home = () => {
         <div>
             <Container className=''>
                 <Row className='my-5'>
-                    <Col className='p-50'>
+                    <Col className='p-50' sm={12} lg={6}>
                         <h3 className='bg-info border rounded text-white text-center py-2'>User List</h3>
                         {
                             users.map((user) => <Link
@@ -41,11 +44,7 @@ const Home = () => {
                                 className='text-decoration-none text-black'
                                 onClick={() => setEmpty(false)}
                             >
-                                <div
-
-                                    className='border rounded my-2'
-                                // onClick={() => userDetails(user.id)}
-                                >
+                                <div className='border rounded my-2'>
                                     <div className="d-flex align-items-center p-2">
                                         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" className='' style={{
                                             width: '40px',
@@ -58,14 +57,15 @@ const Home = () => {
                         }
 
                     </Col>
-                    <Col className='p-50'>
+                    <Col className='p-50' sm={12} lg={6}>
                         <h3 className='bg-info border rounded text-white text-center py-2'>User Details</h3>
                         {
                             empty ? <div className='d-flex align-items-center justify-content-center h-100'>
                                 <h2 className='text-muted'>Please select a user</h2>
-                            </div>
-                                :
+                            </div> :
                                 <Outlet></Outlet>
+
+
                         }
                     </Col>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom'
 
 const UserDetails = () => {
@@ -27,7 +27,7 @@ const UserDetails = () => {
                         <label className="form-label fw-bold">Email</label>
                         <input type="email" disabled value={user?.profile?.email} className="form-control p-2" />
                     </div>
-                </div>     
+                </div>
             }
         </div>
     );
