@@ -64,8 +64,6 @@ const Home = () => {
                                 <h2 className='text-muted'>Please select a user</h2>
                             </div> :
                                 <Outlet></Outlet>
-
-
                         }
                     </Col>
 
